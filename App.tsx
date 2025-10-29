@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { MediaFile, SlideEffect } from './types';
+import { MediaFile, SlideEffect, OverlayOptions } from './types';
 import FileImporter from './components/FileImporter';
 import MediaGallery from './components/MediaGallery';
 import SlideshowPlayer from './components/SlideshowPlayer';
@@ -15,8 +15,8 @@ export default function App() {
   const [slideEffect, setSlideEffect] = useState<SlideEffect>(SlideEffect.Fade);
   const [imageFit, setImageFit] = useState<'contain' | 'cover'>('contain');
   const [slideDuration, setSlideDuration] = useState(5); // in seconds
+  const [editingMediaFile, setEditingMediaFile] = useState<MediaFile | null>(null);
 
-  const [editingMedia, setEditingMedia] = useState<MediaFile | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
 
@@ -135,15 +135,6 @@ export default function App() {
     );
   };
 
-  const handleSaveText = (idToUpdate: string, text: string) => {
-    setVisualMedia(prevMedia =>
-      prevMedia.map(media =>
-        media.id === idToUpdate ? { ...media, overlayText: text } : media
-      )
-    );
-    setEditingMedia(null);
-  };
-
   const handleReorderMedia = useCallback((dragIndex: number, hoverIndex: number) => {
     setVisualMedia(prevMedia => {
       const draggedItem = prevMedia[dragIndex];
@@ -153,6 +144,15 @@ export default function App() {
       return newMedia;
     });
   }, []);
+
+  const handleSaveOverlayOptions = (id: string, options: OverlayOptions) => {
+    setVisualMedia(prevMedia =>
+      prevMedia.map(media =>
+        media.id === id ? { ...media, overlayOptions: options } : media
+      )
+    );
+    setEditingMediaFile(null);
+  };
 
   const currentMediaFile = visualMedia.length > 0 ? visualMedia[currentSlideIndex] : null;
 
@@ -181,8 +181,8 @@ export default function App() {
                 currentSlideIndex={currentSlideIndex}
                 onRemoveMedia={handleRemoveVisualMedia}
                 onToggleDramatic={handleToggleDramatic}
-                onStartEditText={setEditingMedia}
                 onReorderMedia={handleReorderMedia}
+                onEditText={setEditingMediaFile}
               />
             </div>
         )}
@@ -221,12 +221,11 @@ export default function App() {
       </main>
 
       {audioFile && <audio ref={audioRef} src={audioFile.src} loop />}
-      
-      {editingMedia && (
+      {editingMediaFile && (
         <TextEditModal
-          mediaFile={editingMedia}
-          onSave={handleSaveText}
-          onClose={() => setEditingMedia(null)}
+          mediaFile={editingMediaFile}
+          onSave={handleSaveOverlayOptions}
+          onClose={() => setEditingMediaFile(null)}
         />
       )}
     </div>

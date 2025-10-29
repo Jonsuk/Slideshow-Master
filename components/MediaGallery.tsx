@@ -8,11 +8,11 @@ interface MediaGalleryProps {
   currentSlideIndex: number;
   onRemoveMedia: (id: string) => void;
   onToggleDramatic: (id: string) => void;
-  onStartEditText: (mediaFile: MediaFile) => void;
   onReorderMedia: (dragIndex: number, hoverIndex: number) => void;
+  onEditText: (mediaFile: MediaFile) => void;
 }
 
-const MediaGallery: React.FC<MediaGalleryProps> = ({ mediaFiles, onSelectSlide, currentSlideIndex, onRemoveMedia, onToggleDramatic, onStartEditText, onReorderMedia }) => {
+const MediaGallery: React.FC<MediaGalleryProps> = ({ mediaFiles, onSelectSlide, currentSlideIndex, onRemoveMedia, onToggleDramatic, onReorderMedia, onEditText }) => {
   if (mediaFiles.length === 0) {
     return (
       <div className="text-center text-gray-500 py-4">
@@ -30,10 +30,10 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ mediaFiles, onSelectSlide, 
     e.stopPropagation();
     onToggleDramatic(id);
   };
-  
-  const handleSetTextClick = (e: React.MouseEvent, media: MediaFile) => {
+
+  const handleEditTextClick = (e: React.MouseEvent, mediaFile: MediaFile) => {
     e.stopPropagation();
-    onStartEditText(media);
+    onEditText(mediaFile);
   };
   
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -69,9 +69,9 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ mediaFiles, onSelectSlide, 
             >
               <div className="absolute top-1 right-1 z-10 flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <button
-                      onClick={(e) => handleSetTextClick(e, media)}
-                      className={`p-1 rounded-full bg-black/50 text-white hover:bg-blue-500 transition-colors duration-200`}
-                      aria-label="Set overlay text"
+                      onClick={(e) => handleEditTextClick(e, media)}
+                      className="p-1 rounded-full bg-black/50 text-white hover:bg-cyan-500 transition-colors duration-200"
+                      aria-label="Edit text"
                   >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -103,11 +103,6 @@ const MediaGallery: React.FC<MediaGalleryProps> = ({ mediaFiles, onSelectSlide, 
                   <video src={media.src} className="w-full h-24 object-cover" />
               )}
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
-              {media.overlayText && (
-                <div className="absolute bottom-0 left-0 right-0 p-1 bg-black/60 truncate">
-                  <p className="text-xs text-white text-center">{media.overlayText}</p>
-                </div>
-              )}
                {media.type === 'video' && (
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white/80" viewBox="0 0 20 20" fill="currentColor">

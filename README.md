@@ -6,11 +6,11 @@ A web application for creating beautiful slideshows from your local images and v
 
 - **Import Media:** Add multiple images and videos from your computer.
 - **Background Music:** Add a background audio track to your slideshow.
+- **Customizable Text Overlays:** Add text to any slide with custom font size and color.
 - **Transition Effects:** Choose from various slide effects like Fade, Slide, Ken Burns, and more.
 - **Playback Controls:** Full control over your slideshow with play, pause, next, and previous buttons.
 - **Customization:** Adjust slide duration and choose between 'fit' or 'fill' for your media.
 - **Drag & Drop:** Easily reorder your slides in the gallery.
-- **Text Overlays:** Add custom captions to any slide.
 - **Fullscreen Mode:** View your slideshow in an immersive, fullscreen player.
 - **Responsive:** Works on both desktop and mobile browsers.
 

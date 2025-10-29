@@ -1,10 +1,16 @@
+export interface OverlayOptions {
+  text: string;
+  color: string;
+  fontSize: number;
+}
+
 export interface MediaFile {
   id: string;
   file: File;
   src: string;
   type: 'image' | 'video' | 'audio';
   isDramatic?: boolean;
-  overlayText?: string;
+  overlayOptions?: OverlayOptions;
 }
 
 export enum SlideEffect {

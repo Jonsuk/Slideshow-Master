@@ -101,9 +101,19 @@ const SlideshowPlayer: React.FC<SlideshowPlayerProps> = ({ mediaFile, effect, is
   return (
     <div key={key} className={`w-full h-full flex items-center justify-center overflow-hidden relative ${getEffectClasses()}`}>
       {renderMedia()}
-      {mediaFile.overlayText && (
-        <div className="absolute bottom-5 left-5 right-5 p-3 bg-black/70 rounded-lg backdrop-blur-sm transition-opacity duration-500">
-          <p className="text-white text-center text-lg md:text-xl lg:text-2xl font-semibold drop-shadow-lg">{mediaFile.overlayText}</p>
+      {mediaFile?.overlayOptions?.text && (
+        <div className="absolute bottom-5 left-5 right-5 p-4 bg-black/60 rounded-lg text-center pointer-events-none">
+          <p 
+            style={{
+              color: mediaFile.overlayOptions.color,
+              fontSize: `${mediaFile.overlayOptions.fontSize}px`,
+              textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+              whiteSpace: 'pre-wrap',
+            }}
+            className="font-bold"
+          >
+            {mediaFile.overlayOptions.text}
+          </p>
         </div>
       )}
     </div>
