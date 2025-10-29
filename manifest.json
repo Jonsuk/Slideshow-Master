@@ -1,0 +1,16 @@
+{
+  "name": "Slideshow-Master",
+  "short_name": "Slideshow-Master",
+  "description": "An application to create slideshows from your images and videos, with background music.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#0891b2",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

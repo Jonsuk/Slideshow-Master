@@ -1,0 +1,5 @@
+{
+  "name": "Slideshow-Master",
+  "description": "An application to create slideshows from your images and videos, with background music.",
+  "requestFramePermissions": []
+}
