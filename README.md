@@ -1,20 +1,32 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Slideshow-Master
 
-# Run and deploy your AI Studio app
+A web application for creating beautiful slideshows from your local images and videos, complete with background music and transition effects.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/drive/1RZNblfwoRU3OIkeTfWyYqZSs8pZ3zGEQ
+- **Import Media:** Add multiple images and videos from your computer.
+- **Background Music:** Add a background audio track to your slideshow.
+- **Transition Effects:** Choose from various slide effects like Fade, Slide, Ken Burns, and more.
+- **Playback Controls:** Full control over your slideshow with play, pause, next, and previous buttons.
+- **Customization:** Adjust slide duration and choose between 'fit' or 'fill' for your media.
+- **Drag & Drop:** Easily reorder your slides in the gallery.
+- **Text Overlays:** Add custom captions to any slide.
+- **Fullscreen Mode:** View your slideshow in an immersive, fullscreen player.
+- **Responsive:** Works on both desktop and mobile browsers.
 
-## Run Locally
+## How to Run Locally
 
-**Prerequisites:**  Node.js
+To run this project on your own computer:
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1.  Make sure you have [Node.js](https://nodejs.org/) installed.
+2.  Clone the repository or download the project files.
+3.  Open your terminal in the project directory.
+4.  Install the necessary dependencies:
+    ```bash
+    npm install
+    ```
+5.  Start the local development server:
+    ```bash
+    npm run dev
+    ```
+6.  Open your web browser and go to the local address provided (usually `http://localhost:5173`).
